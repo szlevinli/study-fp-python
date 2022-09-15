@@ -1,5 +1,5 @@
 from abc import abstractmethod
-from typing import TypeVar, Protocol, Callable, runtime_checkable
+from typing import Protocol, TypeVar, runtime_checkable
 
 TSource = TypeVar("TSource", covariant=True)
 TResult = TypeVar("TResult", covariant=True)

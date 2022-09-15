@@ -1,5 +1,7 @@
+from __future__ import annotations
+
 from abc import abstractmethod
-from typing import TypeVar, Protocol, Callable, runtime_checkable
+from typing import Protocol, TypeVar, runtime_checkable
 
 TSource = TypeVar("TSource")
 
@@ -8,7 +10,7 @@ TSource = TypeVar("TSource")
 class Monoid(Protocol[TSource]):
     @classmethod
     @abstractmethod
-    def empty(cls) -> "Monoid[TSource]":
+    def empty(cls) -> Monoid[TSource]:
         raise NotImplemented
 
     def __add__(self, other):

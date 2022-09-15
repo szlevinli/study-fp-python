@@ -1,5 +1,7 @@
+from __future__ import annotations
+
 from abc import abstractmethod
-from typing import TypeVar, Protocol, Callable, runtime_checkable
+from typing import Callable, Protocol, TypeVar, runtime_checkable
 
 TSource = TypeVar("TSource")
 TResult = TypeVar("TResult")
@@ -8,7 +10,7 @@ TResult = TypeVar("TResult")
 @runtime_checkable
 class Monad(Protocol[TSource]):
     @abstractmethod
-    def bind(self, fn: Callable[[TSource], "Monad[TResult]"]) -> "Monad[TResult]":
+    def bind(self, fn: Callable[[TSource], Monad[TResult]]) -> Monad[TResult]:
         """Monad bind method.
 
         Haskell: (>>=) :: m a -> (a -> m b) -> m b
@@ -35,7 +37,7 @@ class Monad(Protocol[TSource]):
 
     @classmethod
     @abstractmethod
-    def unit(cls, value: TSource) -> "Monad[TSource]":
+    def unit(cls, value: TSource) -> Monad[TSource]:
         """Wrap a value in a default context.
 
         Haskell: return :: a -> m a
